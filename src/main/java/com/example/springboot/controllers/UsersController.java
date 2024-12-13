@@ -21,14 +21,14 @@ public class UsersController {
     public String printUsers(@RequestParam(value = "count", defaultValue = "5") String count,
                             ModelMap model) {
         model.addAttribute("count", count);
-        model.addAttribute("users", userService.listUsers());
+        model.addAttribute("users", userService.getListUsers());
 
         return "users/users";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") Long id, ModelMap model) {
-        model.addAttribute("user", userService.showUser(id));
+        model.addAttribute("user", userService.getUser(id));
         return "users/show";
     }
 
@@ -45,7 +45,7 @@ public class UsersController {
 
     @GetMapping("/{id}/edit")
     public String edit(ModelMap model, @PathVariable("id") Long id) {
-        model.addAttribute("user", userService.showUser(id));
+        model.addAttribute("user", userService.getUser(id));
         return "users/edit";
     }
 

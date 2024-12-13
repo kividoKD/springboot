@@ -22,13 +22,13 @@ public class UserDaoImp implements UserDao {
 
    @Override
    @SuppressWarnings("unchecked")
-   public List<User> listUsers() {
+   public List<User> getListUsers() {
       TypedQuery<User> query= (TypedQuery<User>) entityManager.createQuery("from User");
       return query.getResultList();
    }
 
    @Override
-   public User showUser(Long id) {
+   public User getUser(Long id) {
       return entityManager.find(User.class, id);
    }
 

@@ -24,13 +24,13 @@ public class UserServiceImp implements UserService {
    }
 
    @Override
-   public List<User> listUsers() {
-      return userDao.listUsers();
+   public List<User> getListUsers() {
+      return userDao.getListUsers();
    }
 
    @Override
-   public User showUser(Long id) {
-      return userDao.showUser(id);
+   public User getUser(Long id) {
+      return userDao.getUser(id);
    }
 
    @Transactional
