@@ -18,7 +18,7 @@ public class UsersController {
     }
 
     @GetMapping()
-    public String printUsers(@RequestParam(value = "count", defaultValue = "5") String count,
+    public String getAllUsers(@RequestParam(value = "count", defaultValue = "5") String count,
                             ModelMap model) {
         model.addAttribute("count", count);
         model.addAttribute("users", userService.getListUsers());
@@ -27,7 +27,7 @@ public class UsersController {
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") Long id, ModelMap model) {
+    public String showUser(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("user", userService.getUser(id));
         return "users/show";
     }
@@ -38,26 +38,26 @@ public class UsersController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("user") User user) {
+    public String createUser(@ModelAttribute("user") User user) {
         userService.addUser(user);
         return "redirect:/users";
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(ModelMap model, @PathVariable("id") Long id) {
+    public String editUser(ModelMap model, @PathVariable("id") Long id) {
         model.addAttribute("user", userService.getUser(id));
         return "users/edit";
     }
 
     @PostMapping("/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
+    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
         user.setId(id);
         userService.updateUser(id, user);
         return "redirect:/users";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id) {
+    public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/users";
     }
